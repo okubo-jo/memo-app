@@ -18,6 +18,7 @@
 {% for memo in memos %}
 <li>
 {{ memo }}
+<a href="/edit/{{ loop.index0 }}">編集</a>
 <a href="/delete/{{ loop.index0 }}" onclick="return confirm('本当に削除しますか？')">削除</a>
 </li>
 {% endfor %}
