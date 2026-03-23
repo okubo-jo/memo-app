@@ -1,0 +1,22 @@
+from flask import Flask, render_template, request, redirect
+
+app = Flask(__name__)
+
+@app.route("/", methods=["GET", "POST"])
+def index():
+    if request.method == "POST":
+        memo = request.form["memo"]
+
+        with open("memo.txt", "a", encoding="utf-8") as f:
+            f.write(memo + "\n")
+
+        return redirect("/")
+
+    memos = []
+    with open("memo.txt", "r", encoding="utf-8") as f:
+        memos = f.readlines()
+
+    return render_template("index.html", memos=memos)
+
+if __name__ == "__main__":
+    app.run(debug=True)
