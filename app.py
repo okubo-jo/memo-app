@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, redirect
+from datetime import datetime
 
 app = Flask(__name__)
 
@@ -8,7 +9,8 @@ def index():
         memo = request.form["memo"]
 
         with open("memo.txt", "a", encoding="utf-8") as f:
-            f.write(memo + "\n")
+            now = datetime.now().strftime("%Y-%m-%d %H:%M")
+            f.write(f"{now} | {memo}\n")
 
         return redirect("/")
 
