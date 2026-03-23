@@ -18,5 +18,18 @@ def index():
 
     return render_template("index.html", memos=memos)
 
+@app.route("/delete/<int:index>")
+def delete(index):
+
+    with open("memo.txt", "r", encoding="utf-8") as f:
+        memos = f.readlines()
+
+    del memos[index]
+
+    with open("memo.txt", "w", encoding="utf-8") as f:
+        f.writelines(memos)
+
+    return redirect("/")
+
 if __name__ == "__main__":
     app.run(debug=True)

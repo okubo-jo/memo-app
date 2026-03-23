@@ -16,7 +16,10 @@
 
 <ul>
 {% for memo in memos %}
-<li>{{ memo }}</li>
+<li>
+{{ memo }}
+<a href="/delete/{{ loop.index0 }}">削除</a>
+</li>
 {% endfor %}
 </ul>
 
